@@ -16,7 +16,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.0</version> <!-- Use a versão mais recente ou necessária -->
+        <version>2.7.0</version>
     </parent>
 
 
@@ -69,7 +69,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <!-- Plugins adicionais podem ser configurados aqui -->
+
         </plugins>
     </build>
     

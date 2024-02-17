@@ -38,3 +38,9 @@ replay_pid*
 .idea/vcs.xml
 
 .idea/libraries/
+
+.idea/encodings.xml
+
+.idea/
+
+target/

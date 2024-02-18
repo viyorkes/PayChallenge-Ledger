@@ -1,5 +1,11 @@
 # Backend-Test-TOTVS-20240208
 
+
+
+
+Para mais detalhes sobre o desafio específico deste projeto, consulte o [README do Desafio](README-CHALLENGE.md).
+
+
 ## Introdução
 
 Neste desafio você deverá implementar uma API REST para um sistema simples de contas a pagar. O sistema permitirá realizar o CRUD de uma conta a pagar, alterar a situação dela quando for efetuado pagamento, obter informações sobre as contas cadastradas no banco de dados, e importar um lote de contas de um arquivo CSV, conforme descrito abaixo.
@@ -47,6 +53,8 @@ Neste desafio você deverá implementar uma API REST para um sistema simples de 
     d. Obter a lista de contas a pagar, com filtro de data de vencimento e descrição;
     e. Obter conta filtrando o id;
     f. Obter valor total pago por período.
+
+
 
 4. Implementar mecanismo para importação de contas a pagar via arquivo csv.
    a. O arquivo será consumido via API.

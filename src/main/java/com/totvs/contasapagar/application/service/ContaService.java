@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.EnumSet;
+import java.util.Optional;
 
 
 @Service
@@ -60,6 +61,10 @@ public class ContaService {
     @Transactional(readOnly = true)
     public Page<Conta> buscarContasFiltradas(LocalDate dataVencimento, String descricao, Pageable pageable) {
         return contaPageRepository.findAll(ContaSpecification.comFiltro(dataVencimento, descricao), pageable);
+    }
+    @Transactional(readOnly = true)
+    public Optional<Conta> buscarContaPorId(Long id) {
+        return contaRepository.findById(id);
     }
 
 

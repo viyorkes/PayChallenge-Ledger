@@ -46,7 +46,7 @@ curl --location 'http://localhost:8080/api/contas' \
 ```
 
 <div align="center">
-  <img src="img/database_info.jpg"/> 
+  <img src="img/database_info.pnj"/> 
 </div>
 
 

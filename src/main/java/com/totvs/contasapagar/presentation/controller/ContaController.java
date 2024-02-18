@@ -97,15 +97,15 @@ public class ContaController {
     }
 
 
-    @GetMapping("/processar-excel")
-    public ResponseEntity<String> processarExcel() {
+    @PostMapping("/processar-excel")
+    public ResponseEntity<String> processarExcel(@RequestBody String caminhoArquivo) {
         try {
-            String mensagem = excelService.processarESalvarContas();
+            String mensagem = excelService.processarESalvarContas(caminhoArquivo);
             return ResponseEntity.ok(mensagem);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Erro ao processar o arquivo Excel: " + e.getMessage());
         }
     }
-
-
 }
+
+

@@ -24,15 +24,17 @@ public class ExcelService {
         this.contaRepository = contaRepository;
     }
 
-    public String processarESalvarContas() throws Exception {
-        List<Conta> contas = lerExcelParaContas();
+    public String processarESalvarContas(String path) throws Exception {
+        List<Conta> contas = lerExcelParaContas(path);
         contaRepository.saveAll(contas);
         return "Arquivo processado e contas salvas com sucesso!";
     }
 
-    private List<Conta> lerExcelParaContas() throws Exception {
+    private List<Conta> lerExcelParaContas(String path) throws Exception {
         List<Conta> contas = new ArrayList<>();
-        ClassPathResource classPathResource = new ClassPathResource("contaexcel.xlsx");
+        //caminho do arquivo passado para leitura
+        ClassPathResource classPathResource = new ClassPathResource(path);
+
         InputStream inputStream = classPathResource.getInputStream();
         Workbook workbook = new XSSFWorkbook(inputStream);
         Sheet sheet = workbook.getSheetAt(0);
@@ -68,7 +70,7 @@ public class ExcelService {
             return new BigDecimal(valueStr);
         } catch (NumberFormatException e) {
             System.err.println("Formato de número inválido: " + valueStr);
-            return BigDecimal.ZERO; // Ou escolha uma maneira adequada de lidar com esse caso
+            return BigDecimal.ZERO;
         }
     }
 }

@@ -27,4 +27,16 @@ public class Conta {
     public enum SituacaoConta {
         PENDENTE, PAGA, CANCELADA
     }
+
+
+
+
+    public void atualizarDados(LocalDate dataVencimento, LocalDate dataPagamento,
+                               BigDecimal valor, String descricao, SituacaoConta situacao) {
+        this.dataVencimento = dataVencimento;
+        this.dataPagamento = dataPagamento;
+        this.valor = valor;
+        this.descricao = descricao;
+        this.situacao = situacao;
+    }
 }

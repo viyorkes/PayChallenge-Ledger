@@ -1,8 +1,8 @@
 package com.totvs.contasapagar.service;
 
 
+import com.totvs.contasapagar.application.dto.AtualizacaoContaDTO;
 import com.totvs.contasapagar.application.service.ContaService;
-import com.totvs.contasapagar.application.service.dto.AtualizacaoContaDTO;
 import com.totvs.contasapagar.domain.model.Conta;
 import com.totvs.contasapagar.domain.repository.ContaRepository;
 import org.junit.jupiter.api.Test;

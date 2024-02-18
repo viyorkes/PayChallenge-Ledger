@@ -1,4 +1,4 @@
-package com.totvs.contasapagar.application.service.dto;
+package com.totvs.contasapagar.application.dto;
 
 
 

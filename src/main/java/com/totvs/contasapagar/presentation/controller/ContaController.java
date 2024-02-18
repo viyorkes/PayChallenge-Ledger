@@ -1,14 +1,22 @@
 package com.totvs.contasapagar.presentation.controller;
 
 
+import com.totvs.contasapagar.application.dto.AtualizacaoContaDTO;
+import com.totvs.contasapagar.application.dto.SituacaoContaDTO;
 import com.totvs.contasapagar.application.service.ContaService;
-import com.totvs.contasapagar.application.service.dto.AtualizacaoContaDTO;
 import com.totvs.contasapagar.domain.model.Conta;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import javax.validation.Valid;
+import java.time.LocalDate;
 
 
 @RestController
@@ -39,6 +47,29 @@ public class ContaController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Erro ao atualizar conta: " + e.getMessage());
         }
+    }
+
+
+    @PutMapping("/{id}/situacao")
+    public ResponseEntity<?> alterarSituacaoConta(@PathVariable Long id, @Valid @RequestBody SituacaoContaDTO situacaoContaDTO) {
+        try {
+            Conta contaAtualizada = contaService.alterarSituacaoConta(id, situacaoContaDTO.getSituacao());
+            return ResponseEntity.ok(contaAtualizada);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Conta não encontrada com ID: " + id);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro ao atualizar situação da conta: " + e.getMessage());
+        }
+    }
+
+
+    @GetMapping("/contas-a-pagar")
+    public ResponseEntity<Page<Conta>> buscarContasFiltradas(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataVencimento,
+            @RequestParam String descricao,
+            @PageableDefault(size = 10) Pageable pageable) {
+        Page<Conta> contas = contaService.buscarContasFiltradas(dataVencimento, descricao, pageable);
+        return ResponseEntity.ok(contas);
     }
 
 

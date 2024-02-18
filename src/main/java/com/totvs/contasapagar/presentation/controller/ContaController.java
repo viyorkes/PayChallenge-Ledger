@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 
@@ -78,6 +79,16 @@ public class ContaController {
         return contaService.buscarContaPorId(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+
+    @GetMapping("/total-contas-pagas")
+    public ResponseEntity<BigDecimal> getTotalPagamentosPagosPorPeriodo(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate inicio,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fim) {
+
+        BigDecimal total = contaService.calcularTotalPagamentosPagosPorPeriodo(inicio, fim);
+        return ResponseEntity.ok(total == null ? BigDecimal.ZERO : total);
     }
 
 

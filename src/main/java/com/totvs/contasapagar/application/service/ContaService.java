@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.EnumSet;
 import java.util.Optional;
@@ -67,5 +68,8 @@ public class ContaService {
         return contaRepository.findById(id);
     }
 
-
+    @Transactional
+    public BigDecimal calcularTotalPagamentosPagosPorPeriodo(LocalDate inicio, LocalDate fim) {
+        return contaRepository.findTotalPagosPorPeriodo(inicio, fim);
+    }
 }
